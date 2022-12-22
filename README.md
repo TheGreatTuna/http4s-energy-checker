@@ -2,7 +2,6 @@
 The service which checks do you have energy at home. Use http4s and cats.effect.IO.
 ## Instructions
 
-Generate an http4s service on the blaze backend with Circe.
 
 1. [Install sbt](https://www.scala-sbt.org/1.x/docs/Setup.html)
 2. `sbt run`
