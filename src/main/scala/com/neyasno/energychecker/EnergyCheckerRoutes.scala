@@ -6,22 +6,18 @@ import org.http4s.dsl.io._
 
 object EnergyCheckerRoutes {
 
-  def jokeRoutes(J: Jokes): HttpRoutes[IO] = {
+  def energyAvailableRoutes(E: EnergyAvailable): HttpRoutes[IO] = {
     HttpRoutes.of[IO] {
-      case GET -> Root / "joke" =>
+      case POST -> Root / "energy" / "update" / UUIDVar(deviceId) =>
         for {
-          joke <- J.get
-          resp <- Ok(joke)
+          update <- E.update(EnergyAvailable.EnergyAvailableRequest(deviceId))
+          resp <- Ok(update)
         } yield resp
-    }
-  }
 
-  def helloWorldRoutes(H: HelloWorld): HttpRoutes[IO] = {
-    HttpRoutes.of[IO] {
-      case GET -> Root / "hello" / name =>
+      case POST -> Root / "energy" / "update" / UUIDVar(deviceId) / "manual" / UUIDVar(id) =>
         for {
-          greeting <- H.hello(HelloWorld.Name(name))
-          resp <- Ok(greeting)
+          update <- E.updateManual(deviceId, id)
+          resp <- Ok(update)
         } yield resp
     }
   }
