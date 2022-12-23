@@ -6,3 +6,4 @@ COPY . .
 
 RUN sbt assembly
 CMD sbt run
+#copy the build.sbt first, then download dependencies, then run assembly
