@@ -12,7 +12,8 @@ case class BlackoutInfo(id: UUID,
                         deviceId: UUID,
                         updatedAt: DateTime,
                         isManual: Boolean = false,
-                        shutdown: Boolean = false
+                        shutdown: Boolean = false,
+                        description: String = ""
                        )
 object BlackoutInfo {
   private lazy val dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'hh:mm:ss")
